@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantasy Books - Readify</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="loading-screen">
+        <img src="pic/gif load.gif" alt="Loading..." class="loading-gif">
+    </div>
+    <header>
+        <nav class="navbar">
+            <div class="navbar-brand">
+                <img src="pic/book.png" alt="Bookstore Logo" class="navbar-logo">
+                <span class="navbar-name">Readify</span>
+            </div>
+            <div class="navbar-box">
+                <ul class="navbar-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#category" class="dropdown-toggle">Category</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="sci-fi.html">Sci-Fi</a></li>
+                            <li><a href="mystery.html">Mystery</a></li>
+                            <li><a href="self-help.html">SelfHelp</a></li>
+                            <li><a href="fantasy.html">Fantasy</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="new.html">New Arrivals</a></li>
+                    <li><a href="review.html">Reviews</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section id="fantasy-home">
+            <div class="main-content">
+            <h2>Welcome to the World of Fantasy</h2>
+            <p>Step into magical realms, meet legendary heroes, and experience epic adventures with our curated collection of fantasy books!</p>
+        </div>
+        </section>
+    
+        <section id="fantasy-collection">
+            <div class="main-content">
+            <h3>Best Fantasy Collection</h3>
+            </div>
+            <div class="book-list">
+                <!-- Fantasy books will be rendered here by fantasy.js -->
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Welcome to the Online Bookstore! We offer a wide range of books across various genres. Explore our collection and find your next favorite read.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#category">Category</a></li>
+                    <li><a href="new.html">New Arrivals</a></li>
+                    <li><a href="review.html">Reviews</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: support@readify.com</p>
+                <p>Phone: +1 234 567 890</p>
+                <p>Address: 123 Bookstore Lane, Satara, India</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><img src="pic/fbk.png" alt="Facebook"></a>
+                    <a href="#"><img src="pic/tw.png" alt="Twitter"></a>
+                    <a href="#"><img src="pic/lg.png" alt="Instagram"></a>
+                </div>
+            </div>
+        </div>
+        <p class="footer-bottom">&copy; 2025 Readify. All rights reserved.</p>
+    </footer>
+
+     <!-- Sign In / Sign Up Modal -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-auth">&times;</span>
+            <h2 id="auth-title">Sign In</h2>
+           <form id="signin-form" action="login.php" method="POST" style="display: block;">
+    <input type="email" name="email" placeholder="Email" required />
+    <input type="password" name="password" placeholder="Password" required />
+    <button type="submit">Sign In</button>
+</form>
+            <p id="to-signup">Don't have an account? <a href="#" id="show-signup">Sign Up</a></p>
+           <form id="signup-form" action="save.php" method="POST" style="display:none;">
+    <input type="text" name="fullname" placeholder="Full Name" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <button type="submit">Sign Up</button>
+</form>
+            <p id="back-to-signin" style="display:none;"><a href="#">Back to Sign In</a></p>
+        </div>
+    </div>
+
+    <script src="fantasy.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Hide the loading screen after content is ready
+        const loadingScreen = document.getElementById('loading-screen');
+        if (loadingScreen) loadingScreen.style.display = 'none';
+
+        // Modal logic
+        document.getElementById('close-auth').onclick = function() {
+            document.getElementById('auth-modal').style.display = 'none';
+        };
+        document.getElementById('signin-form').onsubmit = function(e) {
+            e.preventDefault();
+            document.getElementById('auth-modal').style.display = 'none';
+            window.location.href = 'buy.html';
+        };
+        // No JS handler for signup-form: let it submit to save.php
+
+        document.getElementById('show-signup').onclick = function(e) {
+            e.preventDefault();
+            document.getElementById('signin-form').style.display = 'none';
+            document.getElementById('to-signup').style.display = 'none';
+            document.getElementById('signup-form').style.display = 'block';
+            document.getElementById('back-to-signin').style.display = 'block';
+            document.getElementById('auth-title').textContent = 'Sign Up';
+        };
+        document.getElementById('back-to-signin').onclick = function(e) {
+            e.preventDefault();
+            document.getElementById('signin-form').style.display = 'block';
+            document.getElementById('to-signup').style.display = 'block';
+            document.getElementById('signup-form').style.display = 'none';
+            document.getElementById('back-to-signin').style.display = 'none';
+            document.getElementById('auth-title').textContent = 'Sign In';
+        };
+    });
+    </script>
+</body>
+</html>
